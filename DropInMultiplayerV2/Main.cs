@@ -252,7 +252,7 @@ namespace DropInMultiplayer
             JoinAsResult result = JoinAsResult.Success;
 
             bool isDead = player.GetCurrentBody() == null && player.master.lostBodyToDeath; // Dead and not remote operating a drone
-            isDead |= player.GetCurrentBody().isRemoteOp; // Dead and is remote operating a drone
+            isDead |= player.GetCurrentBody() != null && player.GetCurrentBody().isRemoteOp; // Dead and is remote operating a drone
 
             if (isDead && !DropInConfig.AllowRespawn.Value)
             {
