@@ -1,46 +1,39 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <RootNamespace>DropInMultiplayer</RootNamespace>
-    <AssemblyName>DropInMultiplayer</AssemblyName>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <GenerateDependencyFile>false</GenerateDependencyFile>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="BepInEx.Analyzers" Version="1.0.*">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="BepInEx.Core" Version="5.4.21" />
-
-    <PackageReference Include="R2API.Items" Version="1.0.*" />
-    <PackageReference Include="R2API.Language" Version="1.1.0" />
-
-    <PackageReference Include="UnityEngine.Modules" Version="6000.3.10" IncludeAssets="compile" />
-    <PackageReference Include="RiskOfRain2.GameLibs" Version="1.4.1.0-r.0" />
-    <PackageReference Include="MMHOOK.RoR2" Version="2025.12.9" NoWarn="NU1701" />
-    <PackageReference Include="Mono.Cecil" Version="0.11.*" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="manifest.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="README.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="icon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <!-- Only zip the release build -->
-  <Target Name="ZipOutputPath" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
-    <ZipDirectory
-      SourceDirectory="$(OutputPath)"
-      DestinationFile="$(MSBuildProjectDirectory)\DropInMultiplayer.zip"
-      Overwrite="true" />
-  </Target>
-  <Target Name="CleanZip" AfterTargets="Clean">
-    <Delete Files="$(MSBuildProjectDirectory)\DropInMultiplayer.zip" />
-  </Target>
+	<PropertyGroup>
+		<RootNamespace>DropInMultiplayer</RootNamespace>
+		<AssemblyName>DropInMultiplayer</AssemblyName>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateDependencyFile>false</GenerateDependencyFile>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="BepInEx.Core" Version="5.4.21" />
+		<PackageReference Include="R2API.Core" Version="5.3.0"  />
+		<PackageReference Include="RiskOfRain2.GameLibs" Version="1.4.1-r.0" />
+		<PackageReference Include="UnityEngine.Modules" Version="2021.3.33" />		
+		<PackageReference Include="MMHOOK.RoR2" Version="2025.12.9" NoWarn="NU1701" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="manifest.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="README.md">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="icon.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	<!-- Only zip the release build -->
+	<Target Name="ZipOutputPath" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+		<ZipDirectory SourceDirectory="$(OutputPath)" DestinationFile="$(MSBuildProjectDirectory)\DropInMultiplayer.zip" Overwrite="true" />
+	</Target>
+	<Target Name="ZipOutputPath_Debug" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
+		<ZipDirectory SourceDirectory="$(OutputPath)" DestinationFile="$(MSBuildProjectDirectory)\DropInMultiplayer_Debug.zip" Overwrite="true" />
+	</Target>
+	<Target Name="CleanZip" AfterTargets="Clean">
+		<Delete Files="$(MSBuildProjectDirectory)\DropInMultiplayer.zip" />
+		<Delete Files="$(MSBuildProjectDirectory)\DropInMultiplayer_Debug.zip" />
+	</Target>
 </Project>

@@ -40,7 +40,7 @@ namespace DropInMultiplayer
     {
         public const string PluginGUID = "com.niwith.DropInMultiplayer";
         public const string PluginName = "Drop In Multiplayer";
-        public const string PluginVersion = "4.2.0";
+        public const string PluginVersion = "4.2.1";
 
         private const string HelpHelpText = "Usage: help {command}\nDescription: Prints help text for command";
         private const string JoinAsHelpText = "Usage: join_as {survivor} {player (optional)}\nDescription: Join in-progress run as the given survivor";
@@ -282,7 +282,7 @@ namespace DropInMultiplayer
                 oldBodyName = oldBodyPrefab?.name; // Null when first joining and don't have a body prefab to switch from
                 newBodyName = newBodyPrefab.name;
 
-                switch(oldBodyName)
+                switch (oldBodyName)
                 {
                     case "CaptainBody":
                         bool hasMicrobots = playerInventory.GetItemCountPermanent(RoR2Content.Items.CaptainDefenseMatrix) > 0;
@@ -309,7 +309,7 @@ namespace DropInMultiplayer
                         break;
                     case "DroneTechBody":
                         Logger.LogMessage("Removing drones from players swapping off Operator is work in progress");
-                        
+
                         // WIP code
                         //// Figure out why this is null sometimes
                         //MinionOwnership.MinionGroup playerMinionGroup = MinionOwnership.MinionGroup.FindGroup(player.master.netId);
@@ -335,7 +335,7 @@ namespace DropInMultiplayer
                         break;
                 }
 
-                switch(newBodyName)
+                switch (newBodyName)
                 {
                     case "CaptainBody":
                         if (!captainBlacklistInventories.Contains(playerInventory) || !DropInConfig.PreventCaptainScrapAbuse.Value)

@@ -49,6 +49,12 @@ Also if updating from an old version of the mod, your old config may hang around
 * [WIP] Switching from Operator doesn't remove the drones that come as part of the character, working on a fix for this one just needs more work
 
 # Changelog
+### 4.2.1
+* Long time no update, fixed a couple bugs with a few merged pull requests
+    * Thank you to @timlag1305 (https://github.com/timlag1305) for pull request "Fix null respawn, cleanup project build" (https://github.com/niwith/DropInMultiplayer/pull/26)
+    * Thank you to @viliger2 (https://github.com/viliger2) for pull request "Fix for join_as restoring original body on stage change" (https://github.com/niwith/DropInMultiplayer/pull/25)
+    * Thank you to @Mistaf (https://github.com/Mistaf) for pull request "Fix typo in catch up items configuration#24" https://github.com/niwith/DropInMultiplayer/pull/24
+
 ### 4.2.0
 * Updated to be compatible with Alloyed Collective
     * Switched to using new versions of add, remove and count items that only interact with permenant items
